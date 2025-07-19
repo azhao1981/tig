@@ -2,16 +2,16 @@ Installation instructions
 =========================
 :docext: adoc
 
-Download a tarball from https://github.com/jonas/tig/releases[] or clone the Tig
-repository https://github.com/jonas/tig[https://github.com/jonas/tig.git].
+Download a tarball from https://github.com/azhao1981/tig/releases[] or clone the Tig
+repository https://github.com/azhao1981/tig[https://github.com/azhao1981/tig.git].
 
 The latest version is:
-https://github.com/jonas/tig/releases/download/tig-2.5.12/tig-2.5.12.tar.gz[tig-2.5.12]
-https://github.com/jonas/tig/releases/download/tig-2.5.12/tig-2.5.12.tar.gz.sha256[(sha256)]
+https://github.com/azhao1981/tig/releases/download/tig-2.5.12/tig-2.5.12.tar.gz[tig-2.5.12]
+https://github.com/azhao1981/tig/releases/download/tig-2.5.12/tig-2.5.12.tar.gz.sha256[(sha256)]
 
 *Note:* Do not use the tar.gz file for version 2.0 because it will fail
-to compile due to issue https://github.com/jonas/tig/pull/283[#283] and
-https://github.com/jonas/tig/issues/337[#337]
+to compile due to issue https://github.com/azhao1981/tig/pull/283[#283] and
+https://github.com/azhao1981/tig/issues/337[#337]
 
 The quick and simple way to install Tig is:
 
@@ -50,7 +50,7 @@ Installation using `configure`
 
 If you prefer an autotools-based installation process, you can use the
 `configure` script to detect dependencies and enable features. If you downloaded
-the Tig sources from https://github.com/jonas/tig/releases/[a release tarball]
+the Tig sources from https://github.com/azhao1981/tig/releases/[a release tarball]
 there's already a `configure` script. However, if you are building from the Tig
 repository, you need to ensure that `autoconf` is installed on your system and
 generate the `configure` script yourself.

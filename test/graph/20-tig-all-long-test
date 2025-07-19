@@ -790,7 +790,7 @@ assert_equals stdout <<EOF
 ∙ │ Introduce macro for wrapping calls to vsnprintf
 ∙ │ [GH #22] Add +<lineno> improvement to NEWS
 ∙ │ tig.c: compare_refs: fix comparing by ref->ltag
-∙ │ Make git://github.com/jonas/tig.git repo the master
+∙ │ Make git://github.com/azhao1981/tig.git repo the master
 ∙ │ fixed compile issue: NCURSES_OPAQUE on OSX 10.6.8
 ∙ │ fixed isnumber error (OSX 10.6.8)
 ●─│─╮ Merge pull request #22 from tsibley/open-at-line-number

@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/gdamore/tcell/v2"
-	"github.com/jonas/tig/internal/config"
+	"github.com/azhao1981/tig/internal/config"
 )
 
 // Theme represents a color theme for the application

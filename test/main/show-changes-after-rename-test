@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Test case from https://github.com/jonas/tig/issues/472
+# Test case from https://github.com/azhao1981/tig/issues/472
 
 . libtest.sh
 . libgit.sh

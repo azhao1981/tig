@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/gdamore/tcell/v2"
-	"github.com/jonas/tig/internal/config"
-	"github.com/jonas/tig/internal/git"
+	"github.com/azhao1981/tig/internal/config"
+	"github.com/azhao1981/tig/internal/git"
 )
 
 // HelpView represents the help view with key bindings and usage information

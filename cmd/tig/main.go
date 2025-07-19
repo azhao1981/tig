@@ -5,9 +5,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/jonas/tig/internal/ui"
-	"github.com/jonas/tig/internal/config"
-	"github.com/jonas/tig/internal/git"
+	"github.com/azhao1981/tig/internal/ui"
+	"github.com/azhao1981/tig/internal/config"
+	"github.com/azhao1981/tig/internal/git"
 )
 
 var (

@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/gdamore/tcell/v2"
-	"github.com/jonas/tig/internal/config"
+	"github.com/azhao1981/tig/internal/config"
 )
 
 // KeyBinding represents a single key binding

@@ -1,6 +1,6 @@
-module github.com/jonas/tig
+module github.com/azhao1981/tig
 
-go 1.21
+go 1.24
 
 require (
 	github.com/gdamore/tcell/v2 v2.7.4

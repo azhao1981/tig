@@ -694,7 +694,7 @@ sigsegv_handler(int sig)
 
 	fputs("Tig crashed!\n\n"
 	      "Please report this issue along with all info printed below to\n\n"
-	      "  https://github.com/jonas/tig/issues/new\n\n", stderr);
+	      "  https://github.com/azhao1981/tig/issues/new\n\n", stderr);
 
 	fputs("Tig version: ", stderr);
 	fputs(TIG_VERSION, stderr);
