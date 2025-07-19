@@ -1,3 +1,4 @@
+.*
 *.gcno
 *.gcda
 *.html
@@ -36,3 +37,75 @@ tig-*.tar.gz.sha256
 tig.spec
 tools/doc-gen
 tig.dSYM
+
+# Go build artifacts
+/bin/
+/dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+coverage.html
+
+# Go workspace file
+go.work
+
+# Go modules
+go.sum
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+
+# Local development
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+build/
+dist/
+out/
+
+# Test artifacts
+test-results/
+coverage/
+
+# Debug files
+*.debug
+*.prof
+
+# Runtime files
+*.pid
+*.sock
+
+# Package files
+*.tar.gz
+*.zip
+
+# Local configuration
+.local/
+
+# Cache directories
+.cache/
+.tmp/
