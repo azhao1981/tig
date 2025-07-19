@@ -2,6 +2,7 @@ package git
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -14,14 +15,13 @@ func TestNewClient(t *testing.T) {
 
 func TestGoGitClient(t *testing.T) {
 	// Create a temporary directory for testing
-	tempDir := t.TempDir()
-	
+
 	// Initialize a git repository
 	client := NewClient()
-	
+
 	// Test IsRepository with non-git directory
 	assert.False(t, client.IsRepository())
-	
+
 	// Test with current directory (should work if it's a git repo)
 	if client.IsRepository() {
 		repo, err := client.GetRepository()
@@ -43,7 +43,7 @@ func TestSignature(t *testing.T) {
 		Email: "test@example.com",
 		Time:  time.Now(),
 	}
-	
+
 	assert.Equal(t, "Test User", sig.Name)
 	assert.Equal(t, "test@example.com", sig.Email)
 	assert.False(t, sig.Time.IsZero())
@@ -69,7 +69,7 @@ func TestCommit(t *testing.T) {
 			Time:  time.Now(),
 		},
 	}
-	
+
 	assert.Equal(t, "abc123", commit.Hash)
 	assert.Equal(t, "Test commit message", commit.Summary)
 	assert.Equal(t, "This is the body", commit.Body)
@@ -98,7 +98,7 @@ func TestStatus(t *testing.T) {
 			{Path: "file4.txt", X: "U", Y: "U", IsConflict: true},
 		},
 	}
-	
+
 	assert.Equal(t, "main", status.Branch)
 	assert.Equal(t, 2, status.Ahead)
 	assert.Equal(t, 1, status.Behind)
@@ -116,7 +116,7 @@ func TestFileStatus(t *testing.T) {
 		IsModified: true,
 		IsDeleted:  true,
 	}
-	
+
 	assert.Equal(t, "test.go", file.Path)
 	assert.Equal(t, "M", file.X)
 	assert.Equal(t, "D", file.Y)
@@ -133,7 +133,7 @@ func TestLogOptions(t *testing.T) {
 		All:      true,
 		Reverse:  false,
 	}
-	
+
 	assert.Equal(t, 10, opts.MaxCount)
 	assert.Equal(t, 5, opts.Skip)
 	assert.Equal(t, "main", opts.Branch)
@@ -149,7 +149,7 @@ func TestDiffOptions(t *testing.T) {
 		IgnoreCase:   false,
 		Paths:        []string{"file1.txt", "file2.txt"},
 	}
-	
+
 	assert.Equal(t, 3, opts.ContextLines)
 	assert.True(t, opts.IgnoreSpace)
 	assert.False(t, opts.IgnoreCase)
@@ -161,7 +161,7 @@ func TestRemote(t *testing.T) {
 		Name: "origin",
 		URLs: []string{"https://github.com/user/repo.git"},
 	}
-	
+
 	assert.Equal(t, "origin", remote.Name)
 	assert.Len(t, remote.URLs, 1)
 	assert.Equal(t, "https://github.com/user/repo.git", remote.URLs[0])
@@ -169,15 +169,15 @@ func TestRemote(t *testing.T) {
 
 func TestGetRelativePath(t *testing.T) {
 	client := &GoGitClient{path: "/home/user/project"}
-	
+
 	// Test when path is within repo
 	rel := client.GetRelativePath("/home/user/project/src/main.go")
 	assert.Equal(t, "src/main.go", rel)
-	
+
 	// Test when path is same as repo
 	rel = client.GetRelativePath("/home/user/project")
 	assert.Equal(t, ".", rel)
-	
+
 	// Test when path is outside repo
 	rel = client.GetRelativePath("/home/user/other/file.txt")
 	assert.Equal(t, "../other/file.txt", rel)
@@ -188,23 +188,23 @@ func TestExecuteCommand(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping command execution test in short mode")
 	}
-	
+
 	client := &GoGitClient{path: "."}
-	
+
 	// Test with simple command
 	output, err := client.ExecuteCommand("version")
 	if err != nil {
 		// Git might not be available
 		t.Skipf("git not available: %v", err)
 	}
-	
+
 	assert.Contains(t, string(output), "git version")
 }
 
 // TestOpenWithNonGitDirectory tests opening a non-git directory
 func TestOpenWithNonGitDirectory(t *testing.T) {
 	client := &GoGitClient{}
-	
+
 	tempDir := t.TempDir()
 	err := client.Open(tempDir)
 	assert.Error(t, err)
@@ -213,20 +213,20 @@ func TestOpenWithNonGitDirectory(t *testing.T) {
 // TestErrorCases tests various error cases
 func TestErrorCases(t *testing.T) {
 	client := &GoGitClient{}
-	
+
 	// Test operations without repository
 	_, err := client.GetRepository()
 	assert.Error(t, err)
 	assert.Contains(t, err.Error(), "repository not opened")
-	
+
 	_, err = client.GetBranches()
 	assert.Error(t, err)
 	assert.Contains(t, err.Error(), "repository not opened")
-	
+
 	_, err = client.GetCommits(nil)
 	assert.Error(t, err)
 	assert.Contains(t, err.Error(), "repository not opened")
-	
+
 	_, err = client.GetStatus()
 	assert.Error(t, err)
 	assert.Contains(t, err.Error(), "repository not opened")

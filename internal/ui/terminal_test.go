@@ -3,6 +3,8 @@ package ui
 import (
 	"testing"
 
+	"github.com/azhao1981/tig/internal/config"
+	"github.com/gdamore/tcell/v2"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -33,20 +35,24 @@ func TestNewTerminal(t *testing.T) {
 }
 
 func TestTheme(t *testing.T) {
-	theme := &Theme{
-		Default: 0,
-		Header:  1,
-		Footer:  2,
-		Commit:  3,
-		Author:  4,
-		Date:    5,
-		Branch:  6,
+	// Create a mock config for testing
+	cfg := &config.Config{}
+	cfg.Colors.Colors = map[string]string{
+		"default": "white",
+		"header":  "blue",
+		"commit":  "yellow",
 	}
 
+	theme := NewTheme(cfg)
 	assert.NotNil(t, theme)
-	assert.Equal(t, 0, theme.Default)
-	assert.Equal(t, 1, theme.Header)
-	assert.Equal(t, 2, theme.Footer)
+
+	// Check that the colors from the config are loaded correctly
+	assert.Equal(t, tcell.ColorWhite, theme.GetColor("default"))
+	assert.Equal(t, tcell.ColorBlue, theme.GetColor("header"))
+	assert.Equal(t, tcell.ColorYellow, theme.GetColor("commit"))
+
+	// Check a default color that wasn't in the config
+	assert.Equal(t, tcell.ColorGreen, theme.GetColor("status"))
 }
 
 func TestTerminalMethods(t *testing.T) {
